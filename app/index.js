@@ -1,19 +1,7 @@
-// Tela inicial (redireciona)
-import { useRouter } from 'expo-router';
-import { useEffect } from 'react';
-import { useAuth } from './contexts/AuthContext';
+import { Redirect } from 'expo-router';
 
 export default function Index() {
-  const router = useRouter();
-  const { isAuthenticated } = useAuth();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      router.replace('/(tabs)/home');
-    } else {
-      router.replace('/(auth)/login');
-    }
-  }, [isAuthenticated]);
-
-  return null;
+    // Redireciona para login por padrão
+    // O AuthLayout ira gerenciar o redirecionamento correto
+    return <Redirect href="/(auth)/login" />;
 }
