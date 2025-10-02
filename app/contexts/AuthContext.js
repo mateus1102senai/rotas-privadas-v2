@@ -26,6 +26,23 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const signUp = async (name, email, password) => {
+    try {
+      // Simular cadastro (aqui você faria a chamada para sua API)
+      if (name && email && password) {
+        const userData = { email, name };
+        setUser(userData);
+        setIsAuthenticated(true);
+        router.replace('/(tabs)/home');
+        return { success: true };
+      } else {
+        throw new Error('Dados inválidos');
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+
   const signOut = () => {
     setUser(null);
     setIsAuthenticated(false);
@@ -38,6 +55,7 @@ export function AuthProvider({ children }) {
         isAuthenticated, 
         user, 
         signIn,
+        signUp,
         signOut 
       }}
     >
